@@ -7,7 +7,7 @@ Welcome to Mind of Matter (M.O.M.), an app focused on improving your mental heal
 
 
 ## How it works
-For the front-end, we use EJS, HTML, CSS, and JavaScript(Svelte) to create an intuitive and engaging user experience. For the back-end, we use Express JS and JSON to handle data processing and storage.
+For the front-end, we use HTML, CSS, and JavaScript(Svelte) to create an intuitive and engaging user experience. For the back-end, we use Express JS and JSON to handle data processing and storage.
 
 To go in specifics, the OpenAI Chatbot will allow users to input how their day is going or the OpenAI Chatbot will generate random funny gifs, jokes, or funny things daily or whenever the user asks. This is still being thought out. Users will have access to a sort of quiz diary where users can choose on different scales how their day went and then a short description of how their day went.
 
