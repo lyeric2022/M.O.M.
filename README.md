@@ -11,5 +11,5 @@ For the front-end, we use HTML, CSS, and JavaScript(Svelte) to create an intuiti
 
 
 ## Team
-[Sama Ahmed](https://github.com/26samaahmed) <br />
 Boushra Bettir
+[Sama Ahmed](https://github.com/26samaahmed) <br />
