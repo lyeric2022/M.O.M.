@@ -1,14 +1,14 @@
 import DiaryInput from './routes/components/DiaryInput.svelte';
 
 
-function Input(): string[] {
-	const DEFAULT_INPUT = 'NULL';
-	/* this could come from the url params? definitely! */
-	let url = new URL(window.location.href);
-	let value = url.searchParams.get('input')?.split(' ') || [DEFAULT_INPUT];
-	return value;
+function Input(): string[]|null {
+    const DEFAULT_INPUT = null;
+    /* this could come from the url params? definitely! */
+    let url = new URL(window.location.href);
+    let value = url.searchParams.get('input')?.split(' ') || DEFAULT_INPUT;
+    return value;
 
-	/* Returns the value of the key--> http://localhost/?input= { VALUE } */
+    /* Returns the value of the key--> http://localhost/?input= { VALUE } */
 }
 
 async function SplicedFile(): Promise<Map<string, string>> {
