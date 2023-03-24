@@ -1,22 +1,5 @@
 import DiaryInput from './routes/components/DiaryInput.svelte';
 
-/**
-    1) parse the input from diary input
-    2) we can create a "map" in that json file
-        [
-            {"I had a bad day today", "negative"},
-            {"I could've had better days, but I did not", "negative"}
-
-        ]
-
-    3) loop over the json file 
-        -> splice eachline of the key of that json fi;e
-        -> if the input includes one of those spliced strings, then we do one of two things
-            -> view the value of that line
-                -> if its positive then ==> we add + 1 /the entirejsonfile.size() to a sentiment variable
-                -> else we subtract - 1 / the entirejsonfile.size() to a sentiment variable
-  
- */
 
 function Input(): string[] {
 	const DEFAULT_INPUT = 'NULL';
@@ -49,7 +32,7 @@ async function SplicedFile(): Promise<Map<string, string>> {
 	return dataMap;
 }
 
-function KeyWordExtraction(parsedInput: String, splicedFile: Object): Number {
+function Comparison(parsedInput: String, splicedFile: Object): Number {
 	let urlValue = Input(); // RETURNS TYPE STRING ARRAY ["Hi", "Nice"]
 	let map = SplicedFile(); // RETURNS TYPE MAP [{"key1": ["This", "is", "a", "spliced", "file"]}, {"key2": ["This", "is", "a", "spliced", "file", "two"]} ]
 
