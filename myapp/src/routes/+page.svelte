@@ -1,6 +1,9 @@
-<script>
-    import Diary from "./components/Diary.svelte";
-</script>
+<script lang = 'ts'>
+    import SignUpInput from "./components/Sign/[url]/SignUpInput.svelte";
+    
 
-hi
-<Diary />
+</script>
+Signup
+
+<SignUpInput />
+<!-- <a href = '/home'> Home </a> -->
