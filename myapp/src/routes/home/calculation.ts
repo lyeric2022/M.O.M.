@@ -15,6 +15,7 @@ export function Input(value: string[]): string[] {
 export async function SplicedFile(fileName: string): Promise<Array<Object>> {
 	const response = await fetch(fileName);
 	const file: { [key: string]: string }[] = await response.json();
+	/* This is saying the key is a string and the value is a string of the object, and the array is an array of objects */
 
 	const dataMap = new Array<Object>();
 
@@ -43,8 +44,10 @@ export async function Comparison(v: string[]): Promise<number> {
 
 	for (let value of Object.values(MAP)) {
 		if (value.hasOwnProperty('positive') || value.hasOwnProperty('negative')) {
-			let positiveValue = (value as { positive: string[] })?.positive ?? []; // Thanks stackoverflow and my udemy courses - Boushra
-			let negativeValue = (value as { negative: string[] })?.negative ?? []; // Thanks stackoverflow and my udemy courses - Boushra
+			/* We can delete this if statement */
+			let positiveValue = (value as { positive: string })?.positive ?? []; // Thanks stackoverflow and my udemy courses - Boushra
+			let negativeValue = (value as { negative: string })?.negative ?? []; // Thanks stackoverflow and my udemy courses - Boushra
+			/* the value contains as object which is negatives/positives value */
 			/* How come this worked..? I literally swear to deleted this and then added it back word by word. */
 			URL_VALUE.forEach((word) => {
 				if (positiveValue.includes(word)) {
