@@ -1,5 +1,7 @@
 <div class = 'diarydesign'>
+
    <slot></slot>
+
 </div>
 
 <style>

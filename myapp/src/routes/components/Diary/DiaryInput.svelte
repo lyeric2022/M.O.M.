@@ -6,8 +6,8 @@
     */
 </script>
 
-<div class = 'input' name = 'input'>
+<div class = 'input'>
     <form>
-    <input size = '30' class = 'text' required />
-</form>
+        <input size = '30' class = 'text' name ='input' required />
+    </form>
 </div>

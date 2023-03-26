@@ -1,0 +1,7 @@
+[
+	{ "positive": "I am happy" },
+	{ "positive": "I am feeling good" },
+	{ "negative": "I am sad" },
+	{ "negative": "I am mad" },
+	{ "negative": "I am crying" }
+]
