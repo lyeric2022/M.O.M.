@@ -5,7 +5,7 @@
     export let password = "";
 
     function handleSubmit() {
-      const PAGE_URL = new URL(`http://localhost:5173/?username=${username}&password=#`);
+      const PAGE_URL = new URL(`http://localhost:5173/?username=${username}&password=${password}`);
      
       /* trying to construct a new url */
       return PAGE_URL;
