@@ -11,7 +11,7 @@
       console.log(thisOne);
       const compare = await Comparison(); 
       /* Test and it works! Returns -0.4 which is negative on our scale! Test out some random words dependent on the keywords.json*/
-      sentimentScoreGood = compare;
+      sentimentScoreGood = thisOne;
     });
   </script>
   

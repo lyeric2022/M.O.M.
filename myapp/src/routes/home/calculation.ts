@@ -2,12 +2,31 @@
 	todo #2-> Review some code
 	todo #3-> Add the sentence from the user into the json file to determine the ups and downs or the trend + substrings
 */
-function Input(): string[] {
+function Input(): Array<string> {
 	// /* this could come from the url params? definitely! */
 	let url = new URL(window.location.href);
-	let value = url.searchParams.get('input')?.split(' ') || [];
-	console.log(value);
+	let INPUT_SENTENCES = new Array<string>();
+	let value: string[] = url.searchParams.get('input')?.toLowerCase().split('.') || [];
+	value.forEach((v) => {
+		let split = v.split(' ');
+		split.forEach((s) => INPUT_SENTENCES.push(s));
+	});
 	return value;
+	/* What happens when you stalk ACM CSUF code lol. Anyways we wanna learn about this more before implementing anything */
+	/* Returns the value of the key--> http://localhost/?input= { VALUE } */
+}
+
+function Input2(): Array<string> {
+	// /* this could come from the url params? definitely! */
+	let url = new URL(window.location.href);
+	let INPUT_SENTENCES = new Array<string>();
+	let value: string[] = url.searchParams.get('input')?.toLowerCase().split('.') || [];
+	value.forEach((v) => {
+		let split = v.split(' ');
+		split.forEach((s) => INPUT_SENTENCES.push(s));
+	});
+	console.log(INPUT_SENTENCES);
+	return INPUT_SENTENCES;
 	/* What happens when you stalk ACM CSUF code lol. Anyways we wanna learn about this more before implementing anything */
 	/* Returns the value of the key--> http://localhost/?input= { VALUE } */
 }
@@ -32,21 +51,55 @@ async function SplicedFile(fileName: string): Promise<Array<Object>> {
 	return dataMap;
 }
 
+function FindMax(values: Array<number>): number {
+	let found = values.reduce((a, b) => Math.max(a, b));
+	console.log(found);
+	return found;
+}
+
+async function SumOfJsonValues(): Promise<number> {
+	const FILETWO = await fetch('/src/routes/home/weights.json');
+	const DATA = await FILETWO.json();
+
+	let sum: number = 0;
+	for (let key of DATA) {
+		console.log(Object.values(key));
+		sum += Object.values(key).reduce((acc: number, elem: any) => acc + elem, 0);
+	}
+	console.log(`The sum is ${sum}`);
+	return sum;
+}
+
 export async function ComparsionTwo(): Promise<number> {
 	/* Test number 2 */
 	const FILETWO = await fetch('/src/routes/home/weights.json');
 	const DATA = await FILETWO.json();
+	const JSON_VALUE_SUM = await SumOfJsonValues();
 
-	const TEST = Input();
-	console.log(Object.entries(DATA));
+	const TEST = Input2();
+	let score: number = 0;
+	let values = new Array<number>();
 
-	for (let i of Object.values(DATA)) {
-		console.log(i);
+	for (let key of DATA) {
+		TEST.forEach((elem) => {
+			if (Object.keys(key)?.includes(elem)) {
+				score += key[elem];
+				values.push(Math.abs(key[elem]));
+			}
+		});
 	}
-	return 1;
+	console.log(+score.toFixed(1));
+	console.log(values);
+	console.log(`The score is ${score}`);
+	const MAX_VALUE = FindMax(values);
+	const TOTAL_PT1 = score / MAX_VALUE; // Think about this one
+	const TOTAL_PT2 = TOTAL_PT1 / (JSON_VALUE_SUM * 2 - 1);
+	console.log(`The total part 1-- not finished -- is: ${TOTAL_PT1}`);
+	console.log(`The total part 2--  finished -- is: ${TOTAL_PT2}`);
+	return +TOTAL_PT2.toFixed(2);
 }
 
-export async function Comparison(v: string[]): Promise<number> {
+export async function Comparison(): Promise<number> {
 	const URL_VALUE = Input(); // For now just returns the URL value ( need to uncomment code and figure out next part )
 
 	const MAP = await SplicedFile('/src/routes/home/keywords.json');
