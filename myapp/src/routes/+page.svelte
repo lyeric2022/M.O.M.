@@ -3,7 +3,10 @@
     
 
 </script>
-Signup
+
+<body>
+    
+</body>
 
 <SignUpInput />
 <!-- <a href = '/home'> Home </a> -->

@@ -1,21 +1,19 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+
     import Button from "./Button.svelte";
     export let username = "";
-    export let password = "";
+
+    import { RandomName } from "./page";
 
     function handleSubmit() {
-      const PAGE_URL = new URL(`http://localhost:5173/?username=${username}&password=${password}`);
-     
+      const PAGE_URL = new URL(`http://localhost:5173/?username=${username}`);
+
       /* trying to construct a new url */
       return PAGE_URL;
     }
    
-  
-    onMount(() => {
-      console.log(username, password);
-     
-    });
+    
+   RandomName();
   </script>
   
   <div class="signup">
@@ -25,14 +23,15 @@
       name="username"
       bind:value={username}
       required
-    />
+    />  <Button on:click={RandomName} />
+    <br />
     <input
       class="pass"
       name="password"
-      bind:value={password}
+      
       required
     />
-    <Button on:click={handleSubmit} />
+   
     </form>
   </div>
   
