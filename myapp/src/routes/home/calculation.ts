@@ -85,7 +85,7 @@ function WeightIncrease(keywords: string[], dataFile: any): number {
 	return score;
 }
 
-export async function Comparison(): Promise<number> {
+export async function SentimentScore(): Promise<number> {
 	/* Test number 2 */
 	const DATA = await FetchFile('/src/json/weights.json');
 

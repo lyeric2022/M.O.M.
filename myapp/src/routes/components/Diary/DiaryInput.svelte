@@ -22,3 +22,9 @@
         <DiaryButton on:click:{handleSubmit} />
     </form>
 </div>
+
+<style>
+  input {
+    size: 40;
+  }
+</style>

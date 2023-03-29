@@ -1,13 +1,13 @@
 <script>
     import { onMount } from "svelte";
-    import { Comparison } from "./calculation.ts";
+    import { SentimentScore } from "./calculation.ts";
     import Diary from "../components/Diary/Diary.svelte";
   
     let sentiment = 0;
    
   
     onMount(async () => {
-      const value = await Comparison();
+      const value = await SentimentScore();
     
       /* 
         Test and it works! Returns -0.57 which is negative on our scale!
