@@ -18,13 +18,19 @@
 
 <div class = 'input'>
     <form>
-        <input size = '30' class = 'text' name ='input' required />
-        <DiaryButton on:click:{handleSubmit} />
+        <input size = '30' class = 'text' name ='input' required /> 
+        <br />
+       <DiaryButton />
     </form>
 </div>
 
 <style>
-  input {
-    size: 40;
+  .input {
+    display: flex;
+    justify-content: center;
+  }
+
+  form {
+    text-align: center;
   }
 </style>

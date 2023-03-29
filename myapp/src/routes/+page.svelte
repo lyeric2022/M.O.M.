@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="/src/root/root.css">
 </svelte:head>
 <body>
+
+    
 <SignUpInput />
 </body>
 <style>
- 
+
 
 </style>
 <!-- <a href = '/home'> Home </a> -->

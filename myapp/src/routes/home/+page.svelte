@@ -18,9 +18,21 @@
       sentiment = value;
     });
   </script>
-  
-  <p>The sentiment score is {sentiment}</p>
+ <svelte:head>
+  <link rel="stylesheet" href="/src/root/root.css">
+</svelte:head>
 
+  <div class = 'welcome'>
+    <!-- Will be a component -->
+    <h1> Welcome back, [USERNAME]</h1>
+    <h4> [RANDOM QUOTE]</h4>
+    <h2> Tell us about your day! </h2>
+  </div>
     <!-- To do: Figure out the INPUT URL and use that in CALCULATION.TS -->
   <Diary />
 
+  <p>The sentiment score is {sentiment}</p>
+
+<style>
+
+</style>

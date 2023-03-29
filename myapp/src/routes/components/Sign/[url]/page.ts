@@ -1,4 +1,4 @@
-function AllNames(): string[] {
+export function AllNames(): string[] {
 	return [
 		'SquishyPickle42',
 		'FunkyMonkey69',
@@ -21,11 +21,4 @@ function AllNames(): string[] {
 		'ChattyChicken49',
 		'GrouchyGiraffe72'
 	];
-}
-
-export function RandomName(): string {
-	let names: string[] = AllNames();
-	let foundName = names[Math.floor(Math.random() * names.length)];
-	console.log(foundName);
-	return foundName;
 }
