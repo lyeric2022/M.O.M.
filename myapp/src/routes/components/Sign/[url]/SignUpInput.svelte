@@ -1,19 +1,12 @@
-<script lang="ts">
-  
+<script>
+	  import Diary from "../../Diary/Diary.svelte";
+
     import Button from "./Button.svelte";
+    import { AllNames, RandomID } from "./page";
      let username = "";
      let password = "";
     
-
-    import { AllNames } from "./page";
-    import { accountsAPI } from "../../../../server/server";
-
-    
-    async function handleSubmit() {
-      const accounts = await accountsAPI.readAccounts();
-      accounts.push({ username, password });
-      await accountsAPI.writeAccounts(accounts);
-    }
+  
    
 
      function RandomName(){
@@ -26,6 +19,31 @@
     }
 
     username= RandomName();
+
+
+    /* Fetching Try */
+
+    function handleSubmit(event) {
+    event.preventDefault();
+
+    const FORM_DATA = new FormData(event.target);
+    console.log(FORM_DATA);
+    const DATA = Object.fromEntries(FORM_DATA);
+
+    let newData = {
+      ...DATA,
+      id: RandomID(12)
+    };
+    console.log(newData);
+    fetch('http://localhost:4000/server', {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newData)
+    });
+  }
+   
    
   </script>
 
@@ -40,7 +58,7 @@
       <h1> Mind of Matter welcomes you! </h1>
     </div>
     <Button on:click={RandomName} /><br />
-    <form>
+    <form on:submit={handleSubmit} >
     
        <!-- svelte-ignore a11y-label-has-associated-control -->
      <label> Generate A Username! </label><br />
@@ -58,7 +76,7 @@
       type = 'password'
       required
     /> <br />
-    <button  on:click={handleSubmit} type = 'submit' class = 'submit'> Start Your Journaling Journey...</button>
+    <button  type = 'submit' class = 'submit'> Start Your Journaling Journey...</button>
     </form>
   </div>
 </div>

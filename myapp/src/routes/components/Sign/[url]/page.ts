@@ -22,3 +22,12 @@ export function AllNames(): string[] {
 		'GrouchyGiraffe72'
 	];
 }
+
+export function RandomID(length: number) : any{
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += Math.trunc(Math.random() * 10);
+    }
+    return result;
+  }
+
