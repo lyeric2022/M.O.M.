@@ -10,5 +10,4 @@ M.O.M. offers personalized recommendations based on your journal entries, which 
 
 ## Team
 ˙ᵕ˙ [Boushra Bettir](https://github.com/boushrabettir) <br />
-˃̵ᴗ˂̵ [Eric Ly](https://github.com/lyeric2022) 
 
