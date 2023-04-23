@@ -1,6 +1,6 @@
 <script>
 	  import Diary from "../../Diary/Diary.svelte";
-
+    //import { navigate } from '@sveltejs/kit';
     import Button from "./Button.svelte";
     import { AllNames, RandomID } from "./page";
      let username = "";
@@ -42,8 +42,16 @@
       },
       body: JSON.stringify(newData)
     });
+
+ 
+    
   }
-   
+  
+
+  function handleClick() {
+    navigate('/home');
+  }
+
    
   </script>
 
@@ -76,7 +84,7 @@
       type = 'password'
       required
     /> <br />
-    <button  type = 'submit' class = 'submit'> Start Your Journaling Journey...</button>
+    <button  on:click={handleClick} class = 'submit'> Start Your Journaling Journey...</button>
     </form>
   </div>
 </div>

@@ -1,11 +1,14 @@
 /*
  * The math is done by research papers ive found using a lexicon weight data set.
  * Theres still more to be done to make this more accurate
+ *
  */
 
 function Input2(): Array<string> {
 	// /* this could come from the url params? definitely! */
+
 	let url = new URL(window.location.href);
+
 	let INPUT_SENTENCES = new Array<string>();
 	let value: string[] = url.searchParams.get('input')?.toLowerCase().split('.') || []; //Splicing at every ! or . or ? etc.
 	value.forEach((v) => {
@@ -19,9 +22,7 @@ function Input2(): Array<string> {
 }
 
 function FindMax(values: Array<number>): number {
-	let found = values.reduce((a, b) => Math.max(a, b));
-
-	return found;
+	return values.reduce((a, b) => Math.max(a, b));
 }
 
 async function FetchFile(filename: string): Promise<any> {
@@ -74,9 +75,9 @@ function WeightIncrease(keywords: string[], dataFile: any): number {
 		for (let data of dataFile) {
 			keywords.forEach((word: string) => {
 				if (Object.keys(data)?.includes(word) && data[word] < 0 && frequency[word] > 4)
-					score -= 0.005;
+					score += 0.05;
 				else if (Object.keys(data)?.includes(word) && data[word] > 0 && frequency[word] > 4)
-					score += 0.005;
+					score -= 0.05;
 			});
 		}
 	}
@@ -85,8 +86,31 @@ function WeightIncrease(keywords: string[], dataFile: any): number {
 	return score;
 }
 
+async function EmphasisWords(score: number): Promise<number> {
+	const EMPHASIS = await FetchFile('/src/json/emphasis.json');
+	const DATA = await FetchFile('/src/json/weights.json');
+	const INPUT = Input2();
+
+	for (let key of DATA) {
+		let emphasisFound = false;
+		for (let i = 0; i < INPUT.length; i++) {
+			if (Object.keys(key)?.includes(INPUT[i])) {
+				if (!emphasisFound && EMPHASIS.includes(INPUT[i - 1])) {
+					score += 0.005;
+					emphasisFound = true;
+				} else {
+					console.log('There is no emphasis word!');
+				}
+			}
+		}
+	}
+
+	return score;
+}
+
 export async function SentimentScore(): Promise<number> {
 	/* Test number 2 */
+
 	const DATA = await FetchFile('/src/json/weights.json');
 
 	const JSON_VALUE_SUM = await SumOfJsonValues();
@@ -105,9 +129,10 @@ export async function SentimentScore(): Promise<number> {
 			}
 		});
 	}
-
+	console.log(keywords);
 	const MAX_VALUE = FindMax(values);
 	const TOTAL = Calculation(score, MAX_VALUE, JSON_VALUE_SUM, keywords, DATA);
-
-	return +TOTAL.toFixed(2);
+	const EMPHASIS = await EmphasisWords(TOTAL);
+	console.log(EMPHASIS);
+	return +EMPHASIS.toFixed(2);
 }

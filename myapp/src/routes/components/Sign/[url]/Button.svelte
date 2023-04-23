@@ -3,7 +3,7 @@
 
 <style>
     button {
-        background: whitesmoke;
+        background: none;
         font-size: 2rem;
         border: none;
         cursor: pointer;

@@ -33,13 +33,14 @@ body {
 	height: 100%; /* set the height to 100% to cover the entire viewport */
 	margin: 0; /* remove any default margin */
 	padding: 0; /* remove any default padding */
-	background-color: #b899ff;
+	background-color: #99beff;
+	background-repeat: no-repeat;
 	font-family: 'Poppins', sans-serif;
-	background-image: radial-gradient(at 98% 80%, hsla(241, 67%, 72%, 1) 0px, transparent 50%),
-		radial-gradient(at 41% 3%, hsla(298, 78%, 67%, 1) 0px, transparent 50%),
-		radial-gradient(at 38% 92%, hsla(330, 80%, 69%, 1) 0px, transparent 50%),
-		radial-gradient(at 49% 64%, hsla(61, 97%, 78%, 1) 0px, transparent 50%),
-		radial-gradient(at 47% 12%, hsla(171, 60%, 73%, 1) 0px, transparent 50%),
-		radial-gradient(at 72% 40%, hsla(348, 96%, 60%, 1) 0px, transparent 50%),
-		radial-gradient(at 72% 53%, hsla(109, 71%, 61%, 1) 0px, transparent 50%);
+	background-image: radial-gradient(at 98% 80%, rgb(136, 160, 231) 0px, transparent 50%),
+		radial-gradient(at 41% 3%, rgb(83, 133, 174) 0px, transparent 50%),
+		radial-gradient(at 38% 92%, rgb(113, 153, 239) 0px, transparent 50%),
+		radial-gradient(at 49% 64%, rgb(144, 148, 253) 0px, transparent 50%),
+		radial-gradient(at 47% 12%, rgb(157, 145, 227) 0px, transparent 50%),
+		radial-gradient(at 72% 40%, rgb(55, 124, 251) 0px, transparent 50%),
+		radial-gradient(at 72% 53%, rgb(85, 115, 226) 0px, transparent 50%);
 }
