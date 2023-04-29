@@ -4,8 +4,8 @@
 
 <style>
     .diarydesign {
-        background-color: rgb(220, 220, 237);
-        padding: 4rem;
+        /* background-color: rgba(237, 231, 220, 0.689); */
+        padding: 5rem;
         border-radius: 0.5rem;
         
     }

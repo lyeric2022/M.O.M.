@@ -1,6 +1,5 @@
 <script lang = 'ts'>
-    import SignUpInput from "./components/Sign/[url]/SignUpInput.svelte";
-    
+    import SignUpInput from "./components/Sign/SignUpInput.svelte";
     
 
 </script>

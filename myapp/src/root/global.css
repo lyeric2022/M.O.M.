@@ -1,0 +1,39 @@
+:root {
+  --gradient1-color1: hsla(241, 67%, 72%, 1);
+  --gradient1-color2: transparent;
+  --gradient1-position: 98% 80%;
+
+  --gradient2-color1: hsla(298, 78%, 67%, 1);
+  --gradient2-color2: transparent;
+  --gradient2-position: 41% 3%;
+
+  --gradient3-color1: hsla(330, 80%, 69%, 1);
+  --gradient3-color2: transparent;
+  --gradient3-position: 38% 92%;
+
+  --gradient4-color1: hsla(61, 97%, 78%, 1);
+  --gradient4-color2: transparent;
+  --gradient4-position: 49% 64%;
+
+  --gradient5-color1: hsla(171, 60%, 73%, 1);
+  --gradient5-color2: transparent;
+  --gradient5-position: 47% 12%;
+
+  --gradient6-color1: hsla(348, 96%, 60%, 1);
+  --gradient6-color2: transparent;
+  --gradient6-position: 72% 40%;
+
+  --gradient7-color1: hsla(109, 71%, 61%, 1);
+  --gradient7-color2: transparent;
+  --gradient7-position: 72% 53%;
+}
+
+html,
+body {
+  height: 100%; /* set the height to 100% to cover the entire viewport */
+  margin: 0; /* remove any default margin */
+  padding: 0; /* remove any default padding */
+  background-color: rgba(237, 231, 220, 0.689);
+  background-repeat: no-repeat;
+  font-family: "Poppins", sans-serif;
+}

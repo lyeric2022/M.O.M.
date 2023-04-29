@@ -1,15 +1,15 @@
 {
-	"compilerOptions": {
-		"target": "es2017",
-		"module": "esnext",
-		"moduleResolution": "node",
-		"strict": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true,
-		"resolveJsonModule": true
-	},
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
+  },
 
-	"include": ["src/**/*"],
-	"exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+  "include": ["src/**/*", "src/routes/api/db.ts", "db.ts"],
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
 }
