@@ -2,7 +2,7 @@
 <button type = 'click'> 🎲 </button>
 
 <style>
-     @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css');
+    
      button {
     background-color: #fc9003;
     border: none;

@@ -6,7 +6,7 @@
   
 
 
-  let username = '';
+  export let username = '';
   let password = '';
 
   function RandomName() {
@@ -22,16 +22,18 @@
 
 
 async function handleSubmit() {
-  const res = await fetch('/api', {
+  const res = await fetch('/api/sign', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     
-    body: JSON.stringify({ username }),
+    body: JSON.stringify({ username, password }),
   });
   const data = await res.json();
   console.log(data);
+
+  
 }
 
 
@@ -54,7 +56,7 @@ async function handleSubmit() {
       <input class="user" name="username" bind:value={username} required /> <br />
       <!-- svelte-ignore a11y-label-has-associated-control -->
       <label> Password </label><br />
-      <input class="pass" name="password" type="password" required /> <br />
+      <input class="pass" name="password" type="password" bind:value={password} required /> <br />
       <button class="submit"> Start Your Journaling Journey...</button>
     </form>
   </div>

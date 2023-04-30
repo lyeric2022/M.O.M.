@@ -1,9 +1,10 @@
 import { MongoClient } from "mongodb";
+export let id = "";
+import { SECRET_URI } from "$env/static/private";
 
-const uri =
-  "mongodb+srv://boushrab04:vahdLAsDlMofsGCv@mom.it96sfn.mongodb.net/mom";
+const uri = SECRET_URI;
 
-export async function createUser(username: string) {
+export async function createUser(username: string, password: string) {
   const client = new MongoClient(uri);
   await client.connect();
   console.log("Connected");
@@ -14,12 +15,15 @@ export async function createUser(username: string) {
   const collection = db.collection(collectionName);
 
   try {
-    await collection.insertOne({ username: username });
-    console.log(`Created user: ${username}`);
+    await collection.insertOne({ _username: username, _password: password });
+    console.log(`Created user: ${username} : ${password}`);
   } catch (err) {
     console.log(`Error creating user: ${username}`);
     throw err;
-  } finally {
-    client.close();
   }
+
+  const user = await collection.findOne({ _username: username });
+  id = JSON.stringify(user?._id);
+
+  client.close();
 }

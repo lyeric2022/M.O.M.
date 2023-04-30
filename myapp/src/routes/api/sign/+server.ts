@@ -24,13 +24,17 @@
 // }
 
 import type { RequestEvent } from "@sveltejs/kit";
-import { createUser } from "../../api/db";
+import { createUser } from "../db";
+import { redirect } from "@sveltejs/kit";
 
-export const POST = async (request: Request) => {
-  const { body }: any = request;
-  const db = await createUser(body);
-  return {
-    status: 200,
-    body: body.insertedId,
-  };
-};
+export async function POST({
+  request,
+}: {
+  request: RequestEvent["request"];
+}): Promise<Response> {
+  const data = await request.json();
+  console.log(data);
+  const db = await createUser(data.username, data.password);
+
+  return new Response(String(JSON.stringify({ status: "ok" })));
+}
