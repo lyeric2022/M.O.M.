@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="/src/root/global.css">
 </svelte:head>
 <body>
-
-    
 <SignUpInput />
 </body>
 <style>
