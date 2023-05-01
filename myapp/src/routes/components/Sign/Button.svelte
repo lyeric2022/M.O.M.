@@ -14,11 +14,13 @@
 button {
     background: none;
     border: none;
-    font-size: 3rem;
+    font-size: 4rem;
     display: flex;
     cursor: pointer;
     position: absolute;
     transition: all 500ms ease;
+    left: 4rem;
+    top: 12rem;
     animation: wiggle 1s infinite;
 }
 

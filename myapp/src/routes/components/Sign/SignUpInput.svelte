@@ -16,10 +16,6 @@
     username = foundName;
   }
 
-  function handleClick() {
-    console.log("clicked");
-  }
-
 
 async function handleSubmit() {
   const res = await fetch('/api/sign', {
@@ -45,11 +41,11 @@ async function handleSubmit() {
 </svelte:head>
 
 
-<p class = 'mom'> 💙 M.O.M. </p>
 <div class="parent">
+<p class = 'mom'> 🧡 Mind of Matter Welcomes You! </p>
   <div class="signup">
     <div class="title">
-      <h1>Mind of Matter welcomes you!</h1>
+      <!-- <h1>Mind of Matter welcomes you!</h1> -->
     </div>
     <div class = 'form'>
     <Button on:click={RandomName} /><br />
@@ -75,22 +71,20 @@ async function handleSubmit() {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-  
+
 }
-.signup {
-  display: flex;
-  align-items: center;
-}
+
 
 .title {
   margin: 5rem;
+  
 }
 
 .form {
-  background-color: #1134e59e;
-  box-shadow: 0 0 0.5rem #1134e5b8;
+  background-color: #ffffff9e;
+  box-shadow: 0 0 0.5rem #ebebeeb8;
   text-align: center;
-  padding: 3rem;
+  padding: 6rem;
   border-radius: 0.25rem;
 }
 h1 {
@@ -98,7 +92,7 @@ h1 {
   color: #5244A8;
   font-size: 3rem;
  
-  text-shadow: 0.2rem 0.2rem 0.15rem rgba(21, 37, 94, 0.44);
+  text-shadow: 0.2rem 0.2rem 0.15rem rgba(176, 182, 205, 0.44);
 }
 input {
   text-align: center;
@@ -115,7 +109,7 @@ button {
   border: none;
   border-radius: 0.3rem;
   padding: 1rem;
-  background-color:  rgb(94, 81, 183);
+  background-color:  rgb(45, 45, 46);
   font-weight: 600;
   color: white;
   font-size: 1.3rem;
@@ -130,14 +124,23 @@ button:hover {
 }
 
 label {
-  color: white;
+  font-size: 1.5rem;
+  color: rgb(41, 22, 22);
 }
 
 .mom {
-  margin: 1rem;
+
+ position: absolute;
   font-size: 2rem;
-  color: rgba(68, 94, 225, 0.866);
+  text-align: center;
+
+  color: hsl(32, 92%, 25%);
 }
 
+p {
+  margin: 0.5rem;
+  font-size: 2rem;
+  color:  hsl(32, 92%, 25%);
+}
 </style>
   
