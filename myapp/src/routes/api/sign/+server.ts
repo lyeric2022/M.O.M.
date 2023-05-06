@@ -20,5 +20,5 @@ export async function POST({
 }
 
 export function _getUserID(username: string): String {
-  return String(getUserId(username));
+  return String(JSON.stringify(getUserId(username)));
 }

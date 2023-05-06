@@ -25,33 +25,57 @@
 </section>
 
 
-<button class = 'heart' > ❤️ </button>
+<div class = 'nav-container'>
+    <div class = 'nav-elements'>
+        <button><img src = "/src/static/home.png" alt = "A House" /></button>
+        <button><img src = "/src/static/user.png" alt = "A User" /></button>
+        <button><img src = "/src/static/edit.png" alt = "A View Diary Link" /></button>
+    </div>
+</div>
 
 <style>
+  
+     
+  .nav-elements {
+    border-radius: 0px 40px 0px 0px;
+    box-shadow: 0 0 0.5rem 0.2rem rgb(131, 22, 208);
+    
+    background-color: rgb(115, 0, 255);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    max-width: 40rem;
+    padding: 1.2rem; /* Add padding to the container if desired */
+}
+
+.nav-elements button {
+   text-align: center;
+    display: flex;
+    margin-top: 1rem;
+    background-color: transparent; /* Remove button background color */
+    border: none; /* Remove button border */
+    padding: 0; /* Remove button padding */
+}
+
+    img {
+        width: 25px; /* Adjust this value to the desired width */
+        height: auto;
+        transition: all 200ms ease;
+    }
 
     section {
         display: none;
     }
 
-    .heart {
-        font-size: 2rem;
-        background-color: pink;
-        border-color: rgb(205, 141, 152);
-        border-radius: 50rem;
-        align-items: center;
-        padding: 0.5rem;
-        margin: 0.8rem;
-        transition: all 500ms ease;
-
+    button {
+        background: none;
+        border: none;
     }
 
-    .heart:hover {
-        transform: scale(1.1) rotateZ(-15deg);
-        background-color: rgb(245, 203, 54);
-        border-color: rgb(239, 219, 119);
-        box-shadow: 0 0rem 2rem rgba(255, 166, 0, 0.759);
+  
+    img:hover {
+        transform: scale(1.3);
     }
-
     
 
 </style>

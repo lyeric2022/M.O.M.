@@ -14,55 +14,100 @@
     });
   </script>
  <svelte:head>
-  <link rel="stylesheet" href="../../../root/global.css">
+  <!-- <link rel="stylesheet" href="/src/root/global.css"> -->
   <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@800&display=swap" rel="stylesheet">
 </svelte:head>
-<NavBar />
-  <div class = 'welcome'>
-    <!-- Will be a component -->
-    <h1> Welcome back, FunnyBear21!</h1>
-    <h4> Current Date: {new Date().toLocaleDateString('en-US')}</h4>
-    <h4><i>" You're only the best version of yourself when you relax... "</i></h4>
-    <h1> Tell us about your day! </h1>
+<h2 class = 'welcome'> Welcome back, [USERNAME]<br /><span> Last Logged In: {new Date().toLocaleDateString('en-US')}</span> <br /> <p> Your sentiment { sentiment }</p></h2>
+
+<div class = 'starred section'>
+  <h2> Starred Diaires </h2>
+  <div class = 'diaires'>
+    <div class = 'single-diary'>
+      <a href = ""> Diary Day 1 </a>
+      <p> Date Written: {new Date().toLocaleDateString('en-US')}</p>
+      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet felis non est posuere pellentesque a sed mi. Mauris gravida ex justo, eget volutpat dolor porta ac. Morbi posuere lectus in interdum semper. Nunc in consectetur quam. Mauris massa nulla, luctus vel leo ac, auctor euismod enim. In hac habitasse platea dictumst. Aliquam consectetur euismod mollis.
+      </p>
+    </div>
   </div>
-    
+</div>
+
+<div class = 'past-week section'>
+  <h2> Past Week Diaires </h2>
+  <div class = 'diaires'>
+    <div class = 'single-diary'>
+      <a href = ""> Diary Day 1 </a>
+      <p> Date Written: {new Date().toLocaleDateString('en-US')}</p>
+      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet felis non est posuere pellentesque a sed mi. Mauris gravida ex justo, eget volutpat dolor porta ac. Morbi posuere lectus in interdum semper. Nunc in consectetur quam. Mauris massa nulla, luctus vel leo ac, auctor euismod enim. In hac habitasse platea dictumst. Aliquam consectetur euismod mollis.
+      </p>
+    </div>
+  </div>
+</div>
+
 
     <!-- To do: Figure out the INPUT URL and use that in CALCULATION.TS -->
   <Diary />
+  
+  <NavBar />
 
-  <p>The sentiment score is {sentiment}</p>
 
 <style>
    /* @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'); */
+  * {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+   
+  }
+
   .welcome {
-  background-color: #e3b995;
-  border-radius: 30px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-  color: #FFF;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  margin:10px auto;
-  max-width: 1500px;
-  padding: 50px;
-  text-align: center;
-}
+    color: rgb(250, 238, 255);
+    box-shadow: 0 0 1rem 0.2rem rgba(128, 0, 255, 0.727);
+    background-color: rgb(115, 0, 255);
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 1.5rem 8rem 1.5rem 1.2rem;
+    border-radius: 0 0 3rem 0;
+   
+  }
 
-.welcome h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
-}
-
-.welcome h2 {
-  font-size: 32px;
-  margin-top: 40px;
-}
-
-.welcome h4 {
-  font-size: 18px;
-  font-style: italic;
-  margin-bottom: 30px;
-}
+  span {
+    font-weight: 100;
+    font-size: 1.2rem;
+  }
 
 
+  .starred {
+    margin-top: 13rem;
+  }
+
+  .section h2 {
+    border-bottom: solid 0.1rem rgba(96, 13, 108, 0.416);
+    max-width: 13rem;
+  }
+
+  .section {
+    margin-left: 13rem;
+    margin-bottom: 3rem;
+  }
+
+  .diaires {
+    text-align: left;
+    margin-top: 1rem;
+    box-shadow: 0 0 0.5rem rgb(87, 84, 84);
+    padding: 1rem;
+    max-width: 65em;
+    transition: all 500ms ease;
+  }
+
+  .single-diary a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .diaires:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    box-shadow: 0 0 0.8rem rgb(87, 84, 84);
+  }
 </style>
