@@ -20,6 +20,5 @@ export async function POST({
 }
 
 export function _getUserID(username: string): String {
-  console.log(username);
   return String(getUserId(username));
 }
