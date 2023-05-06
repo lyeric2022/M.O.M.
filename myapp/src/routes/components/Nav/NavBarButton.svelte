@@ -25,7 +25,7 @@
 </section>
 
 
-<button class = 'heart' on:click={handleClick}> ❤️ </button>
+<button class = 'heart' > ❤️ </button>
 
 <style>
 

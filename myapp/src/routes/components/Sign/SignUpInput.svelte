@@ -1,19 +1,15 @@
 <script>
-
   import Button from './Button.svelte';
-  import { AllNames, RandomID } from './usernames';
-
-  
-
-
+  import { goto } from '$app/navigation';
+  import { RandomID } from './usernames';
+  // import { _getUserID } from '../../api/sign/+server';
+ 
+ 
   export let username = '';
   let password = '';
 
   function RandomName() {
-    const names = AllNames();
-    const foundName = names[Math.floor(Math.random() * names.length)];
-    console.log(foundName);
-    username = foundName;
+    username = RandomID();
   }
 
 
@@ -29,9 +25,49 @@ async function handleSubmit() {
   const data = await res.json();
   console.log(data);
 
-  
+
+  const response = await fetch(`/api/getUserID?username=${username}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const userID = await response.json();
+  console.log(userID);
+  window.location.replace(`/home/${userID}`);
 }
 
+async function redirectToUserPage() {
+  const response = await fetch(`/api/getUserID`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const userID = await response.json();
+  const userIDString = JSON.stringify(userID); // convert to string
+  const userIDParsed = JSON.parse(userIDString); // parse string back to object
+  window.location.replace(`/home/${userIDParsed}`);
+}
+
+
+/**
+ * 
+ * 
+ *   fetch('usernames.json', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }).then(response => 
+          response.json()
+        ).then(data => {
+          if (data.map(item => item.employee_name.toLowerCase()).includes(employee.value.toLowerCase().trim())) {
+            console.log('it is included');
+          } else {
+            console.log('it is not included');
+          }
+*/
 
 
 </script>
@@ -56,7 +92,7 @@ async function handleSubmit() {
       <!-- svelte-ignore a11y-label-has-associated-control -->
       <label> Password </label><br />
       <input class="pass" name="password" type="password" bind:value={password} required /> <br />
-      <button class="submit"> Start Your Journaling Journey...</button>
+      <button class="submit" on:submit={redirectToUserPage}> Start Your Journaling Journey...</button>
     </form>
   </div>
   </div>
@@ -71,9 +107,7 @@ async function handleSubmit() {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-
 }
-
 
 .title {
   margin: 5rem;
@@ -87,13 +121,7 @@ async function handleSubmit() {
   padding: 6rem;
   border-radius: 0.25rem;
 }
-h1 {
 
-  color: #5244A8;
-  font-size: 3rem;
- 
-  text-shadow: 0.2rem 0.2rem 0.15rem rgba(176, 182, 205, 0.44);
-}
 input {
   text-align: center;
   margin: 1rem;
@@ -114,7 +142,6 @@ button {
   color: white;
   font-size: 1.3rem;
   transition: all 200ms ease;
- 
 }
 
 button:hover {
@@ -129,11 +156,9 @@ label {
 }
 
 .mom {
-
- position: absolute;
+  position: absolute;
   font-size: 2rem;
   text-align: center;
-
   color: hsl(32, 92%, 25%);
 }
 

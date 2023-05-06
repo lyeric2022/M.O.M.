@@ -1,21 +1,20 @@
 <script>
     import { onMount } from "svelte";
-    import { SentimentScore } from "./calculation.ts";
-    import NavBar from "../components/Nav/NavBar.svelte";
-    import Diary from "../components/Diary/Diary.svelte";
+    import { SentimentScore } from "../calculation.ts";
+    import NavBar from "../../components/Nav/NavBar.svelte";
+    import Diary from "../../components/Diary/Diary.svelte";
     
     
-    let sentiment = 0;
+    
+    export let sentiment = 0;
 
     onMount(async () => {
       const value = await SentimentScore();
-      // await POST();
-  
       sentiment = value;
     });
   </script>
  <svelte:head>
-  <link rel="stylesheet" href="/src/root/global.css">
+  <link rel="stylesheet" href="../../../root/global.css">
   <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@800&display=swap" rel="stylesheet">
 </svelte:head>
 <NavBar />
@@ -24,8 +23,6 @@
     <h1> Welcome back, FunnyBear21!</h1>
     <h4> Current Date: {new Date().toLocaleDateString('en-US')}</h4>
     <h4><i>" You're only the best version of yourself when you relax... "</i></h4>
- 
-  
     <h1> Tell us about your day! </h1>
   </div>
     
@@ -34,13 +31,6 @@
   <Diary />
 
   <p>The sentiment score is {sentiment}</p>
-  <!-- <NavBar /> -->
-
-  <div class = 'add-a-diary'>
-    
-  </div>
-
-
 
 <style>
    /* @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'); */
