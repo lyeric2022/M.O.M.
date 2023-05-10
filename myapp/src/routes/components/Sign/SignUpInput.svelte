@@ -8,6 +8,8 @@
   export let username = '';
   let password = '';
 
+  let ID = "";
+
   function RandomName() {
     username = RandomID();
   }
@@ -26,48 +28,11 @@ async function handleSubmit() {
   console.log(data);
 
 
-  const response = await fetch(`/api/getUserID?username=${username}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(`/api/id?username=${username}`);
   const userID = await response.json();
-  console.log(userID);
+  console.log(String(JSON.stringify(userID)));
   window.location.replace(`/home/${userID}`);
 }
-
-async function redirectToUserPage() {
-  const response = await fetch(`/api/getUserID`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-  const userID = await response.json();
-  const userIDString = JSON.stringify(userID); // convert to string
-  const userIDParsed = JSON.parse(userIDString); // parse string back to object
-  window.location.replace(`/home/${userIDParsed}`);
-}
-
-
-/**
- * 
- * 
- *   fetch('usernames.json', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }).then(response => 
-          response.json()
-        ).then(data => {
-          if (data.map(item => item.employee_name.toLowerCase()).includes(employee.value.toLowerCase().trim())) {
-            console.log('it is included');
-          } else {
-            console.log('it is not included');
-          }
-*/
 
 
 </script>
@@ -85,14 +50,14 @@ async function redirectToUserPage() {
     </div>
     <div class = 'form'>
     <Button on:click={RandomName} /><br />
-    <form on:submit={handleSubmit}>
+    <form on:submit|preventDefault={handleSubmit}>
       <!-- svelte-ignore a11y-label-has-associated-control -->
       <label> Generate A Username! </label><br />
       <input class="user" name="username" bind:value={username} required /> <br />
       <!-- svelte-ignore a11y-label-has-associated-control -->
       <label> Password </label><br />
       <input class="pass" name="password" type="password" bind:value={password} required /> <br />
-      <button class="submit" on:submit={redirectToUserPage}> Start Your Journaling Journey...</button>
+      <button class="submit"> Start Your Journaling Journey...</button>
     </form>
   </div>
   </div>

@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import { SentimentScore } from "../home/calculation";
 import { redirect } from "@sveltejs/kit";
 export let id: any;
@@ -35,14 +35,14 @@ export async function createUser(username: string, password: string) {
   client.close();
 }
 
-export async function createDiary(input: string) {
+export async function createDiary(input: string, score: string) {
   await client.connect();
-  let score = await SentimentScore();
   try {
     await diaryCollection.insertOne({
-      _diary: diary,
+      _diary: input,
       _date: new Date().toLocaleDateString("en-US"),
       _sentiment: score,
+      // TODO: Get the ID from the URL PARAMS but set it up
     });
   } catch (err) {
     throw err;
@@ -51,23 +51,24 @@ export async function createDiary(input: string) {
   client.close();
 }
 
-export async function getUserId(username: string): Promise<String> {
+export async function getUserId(username: string): Promise<string> {
   await client.connect();
-  console.log("Connected");
-
+  console.log("Connected to MongoDB");
+  console.log(username);
   const user = await userCollection.findOne({ _username: username });
-  const id = JSON.stringify(user?._id);
-  console.log(`This is the ID for user ${username}: ${id}`);
+  const userId = user ? user._id.toString() : "";
+  console.log(user);
+  console.log(`User ID for ${username}: ${userId}`);
+  await client.close();
 
-  client.close();
-  return id;
+  return userId;
 }
 
-export async function getUsername(username: string): Promise<String> {
+export async function getUsername(id: string): Promise<String> {
   await client.connect();
 
-  const user = await userCollection.findOne({ _username: username });
-  const name = JSON.stringify(user?._username);
+  const user = await userCollection.find({ _id: new ObjectId(id) }).toArray();
+  const name = JSON.stringify(user.at(0)?._username);
   console.log(name);
 
   client.close();

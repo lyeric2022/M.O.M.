@@ -5,21 +5,41 @@
     
     */
 
-   import DiaryButton from "./DiaryButton.svelte";
-   export let message = "";
   
-  function handleSubmit() {
-    const PAGE_URL = new URL(`http://localhost:5173/?input=${message}`);
-   
-    /* trying to construct a new url */
-    return PAGE_URL;
+   import { page } from "$app/stores";
+   import DiaryButton from "./DiaryButton.svelte";
+   export let input = "";
+   export let sentiment = "";
+   import { SentimentScore } from "../../home/calculation";
+  
+  async function handleSubmit() {
+    /*
+    DIARY
+      - just basically do what i did for the usrename and password kbaob but make sure to include sentiment score!
+    USERNAME
+      - get the url params using stores
+      - fetch /api/user
+      - get the returned username and display that!
+    */
+     
+    // DIARY 
+    sentiment = await SentimentScore();
+
+    const diary_response = await fetch('/api/diary', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      
+      body: JSON.stringify({ input, sentiment })
+    });
   }
 </script>
 
 <div class = 'input'>
-    <form>
+    <form on:submit={handleSubmit}>
        <h2> Tell us about your day!</h2>
-        <textarea size = '20' class = 'text' name ='input' required /> 
+        <textarea size = '20' class = 'text' name ='input' bind:value={input} required /> 
         <br />
        <DiaryButton />
     </form>

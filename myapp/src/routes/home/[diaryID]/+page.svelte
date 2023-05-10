@@ -1,9 +1,12 @@
 <script>
     import { onMount } from "svelte";
+   
     import { SentimentScore } from "../calculation.ts";
     import NavBar from "../../components/Nav/NavBar.svelte";
     import Diary from "../../components/Diary/Diary.svelte";
     
+    let username = "";
+
     
     
     export let sentiment = 0;
@@ -14,7 +17,7 @@
     });
   </script>
  <svelte:head>
-  <!-- <link rel="stylesheet" href="/src/root/global.css"> -->
+
   <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@800&display=swap" rel="stylesheet">
 </svelte:head>
 <h2 class = 'welcome'> Welcome back, [USERNAME]<br /><span> Last Logged In: {new Date().toLocaleDateString('en-US')}</span> <br /> <p> Your sentiment { sentiment }</p></h2>
