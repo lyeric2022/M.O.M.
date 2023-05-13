@@ -11,5 +11,4 @@
 </svelte:head>
 <body>
     <SignUpInput />
-    <p> Already have an account? Login <span><a href = "/login"> here! </a></span></p>
 </body>

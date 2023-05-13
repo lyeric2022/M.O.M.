@@ -53,12 +53,10 @@ export async function createDiary(input: string, score: string) {
 
 export async function getUserId(username: string): Promise<string> {
   await client.connect();
-  console.log("Connected to MongoDB");
-  console.log(username);
+
   const user = await userCollection.findOne({ _username: username });
   const userId = user ? user._id.toString() : "";
-  console.log(user);
-  console.log(`User ID for ${username}: ${userId}`);
+
   await client.close();
 
   return userId;

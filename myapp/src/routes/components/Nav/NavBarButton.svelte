@@ -38,9 +38,9 @@
      
   .nav-elements {
     border-radius: 0px 40px 0px 0px;
-    box-shadow: 0 0 0.5rem 0.2rem rgb(131, 22, 208);
+    box-shadow: 0 0 0.5rem 0.2rem #7FA99B;
     
-    background-color: rgb(115, 0, 255);
+    background-color:#7FA99B;
     position: absolute;
     bottom: 0;
     left: 0;

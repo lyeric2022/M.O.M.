@@ -24,7 +24,7 @@
      
     // DIARY 
     sentiment = await SentimentScore();
-
+    // https://thecatapi.com/thanks
     const diary_response = await fetch('/api/diary', {
       method: 'POST',
       headers: {
@@ -33,6 +33,9 @@
       
       body: JSON.stringify({ input, sentiment })
     });
+
+    
+
   }
 </script>
 

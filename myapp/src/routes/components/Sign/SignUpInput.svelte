@@ -38,33 +38,42 @@ async function handleSubmit() {
 </script>
 
 <svelte:head>
+  <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet" />
 </svelte:head>
 
 
 <div class="parent">
-<p class = 'mom'> 🧡 Mind of Matter Welcomes You! </p>
+<p class = 'mom has-text-danger'> Mind of Matter Welcomes You! </p>
   <div class="signup">
     <div class="title">
       <!-- <h1>Mind of Matter welcomes you!</h1> -->
     </div>
-    <div class = 'form'>
-    <Button on:click={RandomName} /><br />
+    <div class = 'form has-background-light'>
+    <!-- <Button on:click={RandomName} /><br /> -->
     <form on:submit|preventDefault={handleSubmit}>
       <!-- svelte-ignore a11y-label-has-associated-control -->
+      <div class="block">
       <label> Generate A Username! </label><br />
-      <input class="user" name="username" bind:value={username} required /> <br />
-      <!-- svelte-ignore a11y-label-has-associated-control -->
+      <input class="input is-large is-rounded" type="text" placeholder="Username" name = "user" bind:value={username} required />
+      </div>
+      <div class = "block">
       <label> Password </label><br />
-      <input class="pass" name="password" type="password" bind:value={password} required /> <br />
-      <button class="submit"> Start Your Journaling Journey...</button>
+      <input class="input is-large is-rounded" type="text" placeholder="Password" name = "password" bind:value={password} required />
+      </div>
+      <button class="button is-danger is-rounded">Start your Journaling Journey...</button>
     </form>
+    <div class = "block">
+      <p> Already have an account? Login <span><a href = "/login"> here! </a></span></p>
+  </div>
   </div>
   </div>
 </div>
 
   <style>
-
+ * {
+  font-family: "Poppins", sans-serif;
+ }
 .parent {
   position: absolute;
     top: 50%;
@@ -80,30 +89,15 @@ async function handleSubmit() {
 }
 
 .form {
-  background-color: #ffffff9e;
-  box-shadow: 0 0 0.5rem #ebebeeb8;
+  
   text-align: center;
   padding: 6rem;
   border-radius: 0.25rem;
 }
 
-input {
-  text-align: center;
-  margin: 1rem;
-  padding: 2rem 5rem 2rem 5rem;
-  font-size: 1rem;
-  box-shadow: 0 0 10px rgba(128, 128, 128, 0.697);
-  border: none;
-  border-radius: 10px;
-}
 
 button {
   cursor: pointer;
-  border: none;
-  border-radius: 0.3rem;
-  padding: 1rem;
-  background-color:  rgb(45, 45, 46);
-  font-weight: 600;
   color: white;
   font-size: 1.3rem;
   transition: all 200ms ease;
@@ -111,8 +105,6 @@ button {
 
 button:hover {
   transform: scale(1.07);
-  box-shadow: 0 0 0.6rem ;
-  background-color:  rgb(123, 110, 210);
 }
 
 label {
@@ -121,16 +113,11 @@ label {
 }
 
 .mom {
-  position: absolute;
-  font-size: 2rem;
   text-align: center;
-  color: hsl(32, 92%, 25%);
+  font-size: 2rem;
+
 }
 
-p {
-  margin: 0.5rem;
-  font-size: 2rem;
-  color:  hsl(32, 92%, 25%);
-}
+
 </style>
   
