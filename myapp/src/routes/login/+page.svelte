@@ -54,11 +54,9 @@ function handleSubmit() {
 
 .title {
   margin: 5rem;
-  
 }
 
 .form {
-  
   text-align: center;
   padding: 6rem;
   border-radius: 0.25rem;

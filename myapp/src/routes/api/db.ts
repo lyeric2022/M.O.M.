@@ -1,6 +1,8 @@
 import { MongoClient, ObjectId } from "mongodb";
 import { SentimentScore } from "../home/calculation";
 import { redirect } from "@sveltejs/kit";
+import { page } from "$app/stores";
+
 export let id: any;
 import { SECRET_URI } from "$env/static/private";
 
@@ -35,19 +37,27 @@ export async function createUser(username: string, password: string) {
   client.close();
 }
 
-export async function createDiary(input: string, score: string) {
+export async function createDiary(
+  input: string,
+  score: string,
+  image: string,
+  id: string
+) {
   await client.connect();
+  console.log(`the object id for db.ts is ${id}`);
   try {
     await diaryCollection.insertOne({
+      _id: new ObjectId(id),
       _diary: input,
       _date: new Date().toLocaleDateString("en-US"),
       _sentiment: score,
-      // TODO: Get the ID from the URL PARAMS but set it up
+      _cat_img: image,
     });
   } catch (err) {
     throw err;
   }
-
+  console.log(diaryCollection);
+  console.log("Sucessfully inserted diary.");
   client.close();
 }
 
@@ -72,4 +82,24 @@ export async function getUsername(id: string): Promise<String> {
   client.close();
 
   return name;
+}
+
+export async function getImageURL(id: string): Promise<String> {
+  await client.connect();
+
+  const user = await userCollection.find({ _id: new ObjectId(id) }).toArray();
+  const url = user[0]._cat_img;
+
+  client.close();
+
+  return url;
+}
+
+export async function getAllInfo(id: string): Promise<Array<Object>> {
+  await client.connect();
+  console.log(id);
+  const objectId = new ObjectId(id); // Convert the id to a valid ObjectId
+  console.log(objectId);
+
+  return [{}];
 }

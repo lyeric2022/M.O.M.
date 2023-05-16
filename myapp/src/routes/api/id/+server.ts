@@ -17,10 +17,7 @@ export async function GET(request: any): Promise<Response> {
   const urlParams = new URLSearchParams(request.url.search);
   const username: any = urlParams.get("username");
 
-  console.log("Calling getUserId...");
   const USER_ID = await getUserId(username);
-  console.log("Finished calling getUserId.");
 
-  console.log(`From /id endpoint => USER_ID: ${USER_ID}`);
   return json(USER_ID);
 }

@@ -6,8 +6,7 @@
    
   </script>
   
- 
-  <DiaryDesign>
-      <DiaryInput />
-  </DiaryDesign>
+
+    <DiaryInput />
+
   

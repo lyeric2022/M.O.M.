@@ -31,7 +31,15 @@ export async function POST({
 }): Promise<Response> {
   //input
   const data = await request.json();
-  console.log(data);
-  const db = await createDiary(data.input, data.sentiment);
+
+  console.log(`Data in +Server.ts`, data);
+  console.log(data.diaryID);
+  const db = await createDiary(
+    data.input,
+    data.sentiment,
+    data.img,
+    data.diaryID
+  );
+
   return new Response(String(JSON.stringify({ status: 200 })));
 }
