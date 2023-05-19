@@ -13,9 +13,9 @@
 - a for loop for each thingy
  */
 
-import { getAllInfo } from "../db";
-import { json } from "@sveltejs/kit";
-import { page } from "$app/stores";
+// import { getAllInfo } from "../../api/db";
+// import { json } from "@sveltejs/kit";
+// import { page } from "$app/stores";
 
 // export async function GET(id: any): Promise<any> {
 //   const urlParams = new URLSearchParams(id.url.search);
@@ -26,14 +26,15 @@ import { page } from "$app/stores";
 //   return json(allInfo);
 // }
 
-/** @type {import('./$types').PageLoad} */
+// /** @type {import('./$types').PageLoad} */
 
-// TODO- LOAD DIAIRIES THROUGH FILERTING USERID
+// // TODO- LOAD DIAIRIES THROUGH FILERTING USERID
+// import { getAllInfo } from "../../api/db";
+// import { json } from "@sveltejs/kit";
+// export async function load({ params, url }: any): Promise<any> {
+//   const { diaryID } = params;
+//   const INFO = await getAllInfo(diaryID);
+//   console.log({ INFO });
 
-export async function load({ url }: any) {
-  let urlParam = url.searchParams.get("diaryID");
-  console.log(`The load functions gives the following! ${urlParam}`);
-
-  const INFO = await getAllInfo(urlParam);
-  console.log(` INFO RETURNS ${INFO}`);
-}
+//   return { INFO };
+// }

@@ -30,8 +30,8 @@
 
 html,
 body {
-  height: 90rem; /* set the height to 100% to cover the entire viewport */
+  height: 130rem; /* set the height to 100% to cover the entire viewport */
   margin: 0; /* remove any default margin */
   padding: 0; /* remove any default padding */
-  background-color: antiquewhite;
+  background-color: #f0f0f0;
 }

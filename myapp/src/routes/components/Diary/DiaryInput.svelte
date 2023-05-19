@@ -44,7 +44,7 @@
     // DIARY
 
     let img = "";
-    const url = "https://api.thecatapi.com/v1/images/search?limit=5&breed_ids=beng&api_key=live_gS9i3YjjzvPgn1oJLx7rST5ImWSiDazIZ4sE0ncNeEQskoJAWiwmp7NI7NwminfD";
+    const url = "https://api.thecatapi.com/v1/images/search?limit=50&api_key=live_gS9i3YjjzvPgn1oJLx7rST5ImWSiDazIZ4sE0ncNeEQskoJAWiwmp7NI7NwminfD";
     await fetch(url)
       .then(response => response.json())
       .then(data => {

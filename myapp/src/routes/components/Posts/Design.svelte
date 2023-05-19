@@ -25,13 +25,23 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Phasellus nec iaculis mauris.
       </div>
+
+      <div class = "button is-medium is-rounded">
+        READ
+      </div>
     </div>
   </div>
 
 
   <style>
     .card {
-        width: 20rem;
+        width: 25rem;
         margin: 5rem;
+        border-radius: 0.5rem;
+    }
+
+    .button {
+      background-color: #93B5C6;
+      color: #F2F2F2;
     }
   </style>

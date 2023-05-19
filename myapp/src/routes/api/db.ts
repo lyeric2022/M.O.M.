@@ -47,11 +47,11 @@ export async function createDiary(
   console.log(`the object id for db.ts is ${id}`);
   try {
     await diaryCollection.insertOne({
-      _id: new ObjectId(id),
       _diary: input,
       _date: new Date().toLocaleDateString("en-US"),
       _sentiment: score,
       _cat_img: image,
+      _user_id_connection: id,
     });
   } catch (err) {
     throw err;
@@ -74,9 +74,12 @@ export async function getUserId(username: string): Promise<string> {
 
 export async function getUsername(id: string): Promise<String> {
   await client.connect();
+  const new_id = new ObjectId(id.toString());
+  console.log(new_id);
+  console.log(id);
 
-  const user = await userCollection.find({ _id: new ObjectId(id) }).toArray();
-  const name = JSON.stringify(user.at(0)?._username);
+  const user = await userCollection.findOne({ _id: new_id });
+  const name = user?._username ?? "";
   console.log(name);
 
   client.close();
@@ -101,5 +104,10 @@ export async function getAllInfo(id: string): Promise<Array<Object>> {
   const objectId = new ObjectId(id); // Convert the id to a valid ObjectId
   console.log(objectId);
 
-  return [{}];
+  const diaries = await diaryCollection
+    .find({ _id: new ObjectId(id) })
+    .toArray();
+
+  console.log(typeof diaries);
+  return diaries;
 }
