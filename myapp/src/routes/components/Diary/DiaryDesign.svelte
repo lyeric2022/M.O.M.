@@ -1,11 +1,7 @@
-<div class = 'diarydesign'>
-
+<div class = 'box'>
    <slot></slot>
-
 </div>
 
 <style>
-    .diarydesign {
-        background-color: rgb(140, 140, 215);
-    }
+   
 </style>

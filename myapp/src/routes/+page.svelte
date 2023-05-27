@@ -1,9 +1,14 @@
 <script lang = 'ts'>
-    import SignUpInput from "./components/Sign/[url]/SignUpInput.svelte";
+    import SignUpInput from "./components/Sign/SignUpInput.svelte";
+   
+    import { redirect } from "@sveltejs/kit";
+
+
     
-
 </script>
-Signup
-
-<SignUpInput />
-<!-- <a href = '/home'> Home </a> -->
+<svelte:head>
+    <!-- <link rel="stylesheet" href="/src/root/global.css"> -->
+</svelte:head>
+<body>
+    <SignUpInput />
+</body>

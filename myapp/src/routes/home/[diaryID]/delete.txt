@@ -1,0 +1,96 @@
+/home/645acc0671b4f26de1163b8e
+
+
+<!-- <div class = 'section'>
+  <div class = 'welcome'>
+    <!-- Will be a component -->
+    <h1> Welcome back, FunnyBear21!</h1>
+    <p> Current Date: {new Date().toLocaleDateString('en-US')}</p>
+    <p>The sentiment score is {sentiment}</p>
+  </div>
+
+  <div class = 'diaries'>
+    <h2> Recent diaries</h2>
+    <div class = 'single-diary'>
+     
+        <div class = 'detail'>
+         <a href = ""><h2> Diary Blob </h2> </a>
+          <p class = 'date'> {new Date().toLocaleDateString('en-US')}</p>
+          <p class = 'description'> Description..</p>
+        </div>
+     
+    </div>
+  </div>
+</div> -->
+
+
+
+  .section {
+  text-align: center;
+  margin: 3rem;
+  box-shadow: 0 0 1rem rgba(45, 45, 90, 0.2);
+}
+
+.section .welcome {
+  background-color: rgb(106, 163, 249);
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: -20px;
+}
+
+.section .diaries {
+  background-color: rgb(202, 223, 254);
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.section h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.section p {
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.section .diaries h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(106, 163, 249);
+  margin-bottom: 1rem;
+}
+
+.single-diary {
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.single-diary .detail {
+  margin-left: 10px;
+}
+
+.single-diary a {
+  text-decoration: none;
+  color: rgb(106, 163, 249);
+}
+
+.single-diary h2 {
+  font-size: 20px;
+  margin-bottom: 0.5rem;
+  color: rgb(106, 163, 249);
+}
+
+.single-diary .date {
+  font-size: 16px;
+  color: #888888;
+  margin-bottom: 0.5rem;
+}
+
+.single-diary .description {
+  font-size: 18px;
+  color: #666666;
+}
