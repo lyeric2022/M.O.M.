@@ -5,37 +5,39 @@
     import NavBar from "../../components/Nav/NavBar.svelte";
     import Diary from "../../components/Diary/Diary.svelte";
     import { page } from "$app/stores";
-    
-    let username = "";
+
+
 
     export let sentiment = 0;
 
 
 
-  //   async function allPosts() {
-  //   const response = await fetch(`/api/data?diaryID=${JSON.stringify($page.params.diaryID)}`);
-  //   const info = await response.json();
-  //   console.log('here is teh svelte info')
-  //   console.log(JSON.stringify(info)); // Convert the object to JSON string
-  //   return info;
-  // }
-
-
+    //   async function allPosts() {
+    //   const response = await fetch(`/api/data?diaryID=${JSON.stringify($page.params.diaryID)}`);
+    //   const info = await response.json();
+    //   console.log('here is teh svelte info')
+    //   console.log(JSON.stringify(info)); // Convert the object to JSON string
+    //   return info;
+    // }
 
 
   
   
+    let info_diaries = [];
 
     onMount(async () => {
       const value = await SentimentScore();
       sentiment = value;
 
-      // console.log( await allPosts())
-
       const response = await fetch(`/api/user?id=${$page.params.diaryID}`);
       const info = await response.json();
-      console.log(JSON.stringify(info));
+      console.log(info)
+      const response_diaries = await fetch(`/api/get_data?diaryID=${JSON.stringify($page.params.diaryID)}`);
+      info_diaries = await response_diaries.json();
+      console.log($page.params.diaryID)
+
     });
+
   </script>
  <svelte:head>
   <link rel="stylesheet" href="/src/root/global.css">
@@ -50,10 +52,16 @@
   <p> Hope your day is going well!</p>
   <p class = "spaced">🐈 JANUARY 20, 2000 | 10:00 🐈</p>
   <p>{JSON.stringify($page.params.diaryID)}</p>
+  {#if info_diaries.length > 0}
+    {#each info_diaries as diary}
+      <p>{JSON.stringify(diary)}</p>
+    {/each}
+  {:else}
+    <p>Loading...</p>
+  {/if}
 </div>
 
 <div class = 'header'>
-<!-- <h2 class = 'welcome'> Welcome back, [USERNAME]<br /><span> Last Logged In: {new Date().toLocaleDateString('en-US')}</span> <br /> <p> Your sentiment { sentiment }</p></h2> -->
 
 <div class = 'button-container'>
   <button class="button has-text-link-light is-rounded is-large is-fullwidth">+ Share your Story</button> <br />
@@ -69,7 +77,10 @@
   <div class = "section-title">
     <p> MOST RECENT DIARIES </p>
   </div>
-  <Design />
+  {#each info_diaries as diary_entry}
+    <!-- <Design description={diary_entry._diary} date={diary_entry._date} cat_url={diary_entry._cat_img} /> -->
+    {diary_entry}
+  {/each}
 
 
   <Diary />

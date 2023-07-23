@@ -1,38 +1,39 @@
 import { MongoClient, ObjectId } from "mongodb";
-import { SentimentScore } from "../home/calculation";
-import { redirect } from "@sveltejs/kit";
-import { page } from "$app/stores";
-
 export let id: any;
 import { SECRET_URI } from "$env/static/private";
+import mongoose from "mongoose";
+import DiaryInput from "../components/Diary/DiaryInput.svelte";
 
 const uri = SECRET_URI;
 const client = new MongoClient(uri);
 const dbName = "mom";
-const db = client.db(dbName);
-const user = "users";
-const userCollection = db.collection(user);
-const diary = "diary";
-const diaryCollection = db.collection(diary);
+const user_collection = "users";
+const diary_collection = "diary";
 
-export async function createUser(username: string, password: string) {
-  await client.connect();
-  console.log("Connected");
+async function connectToDB() {
+  // Connects to database
 
   try {
+    await client.connect();
+  } catch (e) {
+    throw e;
+  }
+}
+
+export async function createUser(username: string, password: string) {
+  await connectToDB();
+
+  try {
+    const userCollection = client.db(dbName).collection(user_collection);
     await userCollection.insertOne({
       _username: username,
       _password: password,
     });
-    console.log(`Created user: ${username} : ${password}`);
-  } catch (err) {
-    console.log(`Error creating user: ${username}`);
-    throw err;
+  } catch (e) {
+    throw e;
+  } finally {
+    client.close();
   }
-
-  const user = await userCollection.findOne({ _username: username });
-  id = JSON.stringify(user?._id);
-  console.log(`THis is you rid`, { id });
 
   client.close();
 }
@@ -43,9 +44,10 @@ export async function createDiary(
   image: string,
   id: string
 ) {
-  await client.connect();
-  console.log(`the object id for db.ts is ${id}`);
+  await connectToDB();
+
   try {
+    const diaryCollection = client.db(dbName).collection(diary_collection);
     await diaryCollection.insertOne({
       _diary: input,
       _date: new Date().toLocaleDateString("en-US"),
@@ -53,61 +55,75 @@ export async function createDiary(
       _cat_img: image,
       _user_id_connection: id,
     });
-  } catch (err) {
-    throw err;
+  } catch (e) {
+    throw e;
+  } finally {
+    client.close();
   }
-  console.log(diaryCollection);
-  console.log("Sucessfully inserted diary.");
-  client.close();
 }
 
 export async function getUserId(username: string): Promise<string> {
-  await client.connect();
+  await connectToDB();
 
-  const user = await userCollection.findOne({ _username: username });
-  const userId = user ? user._id.toString() : "";
-
-  await client.close();
-
-  return userId;
+  try {
+    const userCollection = client.db(dbName).collection(user_collection);
+    const user = await userCollection.findOne({ _username: username });
+    const userId = user ? user._id.toString() : "";
+    return userId;
+  } catch (e) {
+    throw e;
+  } finally {
+    client.close();
+  }
 }
 
 export async function getUsername(id: string): Promise<String> {
-  await client.connect();
-  const new_id = new ObjectId(id.toString());
-  console.log(new_id);
-  console.log(id);
+  await connectToDB();
+  try {
+    const userCollection = client.db(dbName).collection(user_collection);
+    const userData = await userCollection.findOne({ _id: new ObjectId(id) });
+    const username = userData?._username ?? "";
 
-  const user = await userCollection.findOne({ _id: new_id });
-  const name = user?._username ?? "";
-  console.log(name);
-
-  client.close();
-
-  return name;
+    return username;
+  } catch (e) {
+    throw e;
+  } finally {
+    client.close();
+  }
 }
 
 export async function getImageURL(id: string): Promise<String> {
-  await client.connect();
+  await connectToDB();
 
-  const user = await userCollection.find({ _id: new ObjectId(id) }).toArray();
-  const url = user[0]._cat_img;
+  try {
+    const userCollection = client.db(dbName).collection(user_collection);
+    const userData = await userCollection.findOne({ _id: new ObjectId(id) });
+    const url = userData?._cat_img;
 
-  client.close();
-
-  return url;
+    return url;
+  } catch (e) {
+    throw e;
+  } finally {
+    client.close();
+  }
 }
 
-export async function getAllInfo(id: string): Promise<Array<Object>> {
-  await client.connect();
-  console.log(id);
-  const objectId = new ObjectId(id); // Convert the id to a valid ObjectId
-  console.log(objectId);
+export async function getAllInfo(user_id: string): Promise<any> {
+  await connectToDB();
 
-  const diaries = await diaryCollection
-    .find({ _id: new ObjectId(id) })
-    .toArray();
+  try {
+    const diaryCollection = client.db(dbName).collection(diary_collection);
+    const diariesCursor = diaryCollection.find({
+      _user_id_connection: user_id,
+    });
 
-  console.log(typeof diaries);
-  return diaries;
+    // TODO - Fix fetch
+    const diaries = await diariesCursor.toArray();
+
+    return diaries;
+  } catch (e) {
+    throw e;
+  } finally {
+    client.close();
+  }
 }

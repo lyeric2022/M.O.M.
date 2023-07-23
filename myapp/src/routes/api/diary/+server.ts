@@ -29,11 +29,7 @@ export async function POST({
 }: {
   request: RequestEvent["request"];
 }): Promise<Response> {
-  //input
   const data = await request.json();
-
-  console.log(`Data in +Server.ts`, data);
-  console.log(data.diaryID);
   const db = await createDiary(
     data.input,
     data.sentiment,
